@@ -8,7 +8,8 @@ void main() async {
   List currencies = await getCurrencies();
   print(currencies);
 
-  runApp(new MaterialApp(
+  runApp(
+    new MaterialApp(
       home: new CryptoListWidget(currencies),
     ),
   );
@@ -48,7 +49,7 @@ class CryptoListWidget extends StatelessWidget {
 
   Widget _buildBody() {
     return new Container(
-      margin: const EdgeInsets.fromLTRB(8.0, 56.0, 8.0, 4.0),
+      margin: const EdgeInsets.fromLTRB(18.0, 56.0, 18.0, 4.0),
       child: new Column(
         children: <Widget>[_getAppTitleWidget(), _getListViewWidget()],
       ),
@@ -91,17 +92,16 @@ class CryptoListWidget extends StatelessWidget {
   }
 
   Text _getSubtitleWidget(String priceUsd, String percentChange1h) {
-    return new Text(
-        '\$$priceUsd\n1 hour: $percentChange1h%',
-        style: new TextStyle(fontWeight: FontWeight.w200)
-    );
+    return new Text('\$$priceUsd\n1 hour: $percentChange1h%',
+        style: new TextStyle(fontWeight: FontWeight.w200));
   }
 
   ListTile _getListTile(Map currency, MaterialColor color) {
     return new ListTile(
       leading: _getLeadingWidget(currency['name'], color),
       title: _getTitleWidget(currency['name']),
-      subtitle: _getSubtitleWidget(currency['price_usd'], currency['percent_change_1h']),
+      subtitle: _getSubtitleWidget(
+          currency['price_usd'], currency['percent_change_1h']),
       isThreeLine: true,
     );
   }
